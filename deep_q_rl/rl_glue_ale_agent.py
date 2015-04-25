@@ -371,16 +371,7 @@ class NeuralAgent(Agent):
         Add the most recent data to the data set and choose
         an action based on the current policy.
         """
-
-	C = cur_img.reshape(4,84,84)
-	pl.imshow(C[0,:,:])
-	pl.savefig('testIN1', format = 'png')	
-	pl.imshow(C[1,:,:])
-	pl.savefig('testIN2', format = 'png')	
-	pl.imshow(C[2,:,:])
-	pl.savefig('testIN3', format = 'png')	
-	pl.imshow(C[3,:,:])
-	pl.savefig('testIN4', format = 'png')		
+	
 
         data_set.add_sample(self.last_img,
                             self.last_action.intArray[0],
@@ -389,14 +380,14 @@ class NeuralAgent(Agent):
             phi = data_set.phi(cur_img)
 	    img = phi
 	    C = img.reshape(4,84,84)
-	    pl.imshow(C[0,:,:])
-	    pl.savefig('testIN1', format = 'png')	
-	    pl.imshow(C[1,:,:])
-	    pl.savefig('testIN2', format = 'png')	
-	    pl.imshow(C[2,:,:])
-	    pl.savefig('testIN3', format = 'png')	
-	    pl.imshow(C[3,:,:])
-	    pl.savefig('testIN4', format = 'png')	    
+	    plt.imshow(C[0,:,:])
+	    plt.savefig('testIN1', format = 'png')	
+	    plt.imshow(C[1,:,:])
+	    plt.savefig('testIN2', format = 'png')	
+	    plt.imshow(C[2,:,:])
+	    plt.savefig('testIN3', format = 'png')	
+	    plt.imshow(C[3,:,:])
+	    plt.savefig('testIN4', format = 'png')	    
 
 
             int_action = self.network.choose_action(phi, epsilon)
