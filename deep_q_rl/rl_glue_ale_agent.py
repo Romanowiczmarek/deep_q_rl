@@ -243,7 +243,7 @@ class NeuralAgent(Agent):
            An action of type rlglue.types.Action
         """
 
-        print 'Agent start'
+        #print 'Agent start'
 
         self.step_counter = 0
         self.batch_counter = 0
@@ -282,7 +282,7 @@ class NeuralAgent(Agent):
 
         # convert to greyscale
         
-        if settings.cuda == True: 
+        if False and settings.cuda == True: 
 	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	else:
 	    greyscaled = np.average(image, axis=1)
@@ -398,7 +398,7 @@ class NeuralAgent(Agent):
         if self.testing:
             self.total_reward += reward
         else:
-            print "Simulated at a rate of {}/s \n Average loss: {}".format(\
+            #print "Simulated at a rate of {}/s \n Average loss: {}".format(\
                 self.batch_counter/total_time,
                 np.mean(self.loss_averages))
 

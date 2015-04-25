@@ -276,7 +276,7 @@ class CNNQLearner(object):
         if False and np.random.random() < epsilon:
             return np.random.randint(0, self.num_actions)
         else:
-#            print self.q_vals(state)
+            print self.q_vals(state)
             return np.argmax(self.q_vals(state))
 
     def train(self, states, actions, rewards, next_states,
