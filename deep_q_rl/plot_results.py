@@ -10,6 +10,8 @@ plot_results.py RESULTS_CSV_FILE
 """
 
 import numpy as np
+import matplotlib as mlp
+mlp.use('Agg')
 import matplotlib.pyplot as plt
 import sys
 

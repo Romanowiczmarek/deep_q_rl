@@ -36,6 +36,7 @@ from rlglue.types import Observation
 from rlglue.utils import TaskSpecVRLGLUE3
 import time
 
+#import matplotlib.pyplot as pl
 import random
 import numpy as np
 import settings
@@ -45,7 +46,11 @@ if settings.cuda == True:
 
 import argparse
 
+import matplotlib as mlp
+mlp.use('Agg')
+
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 
 import cnn_q_learner
 import ale_data_set
@@ -292,6 +297,9 @@ class NeuralAgent(Agent):
         resize_width = CROPPED_WIDTH
         resize_height = int(round(float(IMAGE_HEIGHT) * CROPPED_HEIGHT / 
                                   IMAGE_WIDTH))
+	image = greyscaled
+	print 'Average pixel value: '+str(np.average(image))
+	print 'Max pixel value: '+str(np.max(image))
 
         resized = cv2.resize(greyscaled, (resize_width, resize_height),
         interpolation=cv2.INTER_LINEAR)
@@ -301,6 +309,9 @@ class NeuralAgent(Agent):
 	print crop_y_cutoff
 	print crop_y_cutoff+CROPPED_HEIGHT
         cropped = resized[crop_y_cutoff:crop_y_cutoff + CROPPED_HEIGHT, :]
+
+#	plt.imshow(cropped)
+#	plt.savefig('testDQN',cmap = cm.Greys_r, format = 'png')
 
         return cropped
 
@@ -325,7 +336,7 @@ class NeuralAgent(Agent):
 
 
         print 'Average pixel value: '+str(np.average(cur_img))
- #       print 'Max value: '+str(np.max(cur_img))
+        print 'Max value: '+str(np.max(cur_img))
 
         #TESTING---------------------------
         if self.testing:
@@ -447,7 +458,7 @@ class NeuralAgent(Agent):
 	elif in_message == "parameterStats":
 	    print 'in parameterStats'
 	    self.network.paramStats()
-
+#	    print 1/0
         elif in_message.startswith("finish_testing"):
             self.testing = False
             holdout_size = 3200

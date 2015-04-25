@@ -7,6 +7,8 @@ plot_filters.py PICKLED_NN_FILE
 """
 
 import sys
+import matplotlib as mlp
+mlp.use('Agg')
 import matplotlib.pyplot as plt
 import cPickle
 
