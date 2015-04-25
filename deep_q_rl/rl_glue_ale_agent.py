@@ -376,6 +376,18 @@ class NeuralAgent(Agent):
                             reward, False)
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
+	    img = phi
+	    C = img.reshape(4,84,84)
+	    pl.imshow(C[0,:,:])
+	    pl.savefig('testIN1', format = 'png')	
+	    pl.imshow(C[1,:,:])
+	    pl.savefig('testIN2', format = 'png')	
+	    pl.imshow(C[2,:,:])
+	    pl.savefig('testIN3', format = 'png')	
+	    pl.imshow(C[3,:,:])
+	    pl.savefig('testIN4', format = 'png')	    
+
+
             int_action = self.network.choose_action(phi, epsilon)
         else:
             int_action = self.randGenerator.randint(0, self.num_actions - 1)
