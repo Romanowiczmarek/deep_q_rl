@@ -361,6 +361,16 @@ class NeuralAgent(Agent):
         an action based on the current policy.
         """
 
+	C = cur_img.reshape(4,84,84)
+	pl.imshow(C[0,:,:])
+	pl.savefig('testIN1', format = 'png')	
+	pl.imshow(C[1,:,:])
+	pl.savefig('testIN2', format = 'png')	
+	pl.imshow(C[2,:,:])
+	pl.savefig('testIN3', format = 'png')	
+	pl.imshow(C[3,:,:])
+	pl.savefig('testIN4', format = 'png')		
+
         data_set.add_sample(self.last_img,
                             self.last_action.intArray[0],
                             reward, False)
