@@ -298,6 +298,8 @@ class NeuralAgent(Agent):
 
         # Crop the part we want
         crop_y_cutoff = resize_height - CROP_OFFSET - CROPPED_HEIGHT
+	print crop_y_cutoff
+	print crop_y_cutoff+CROPPED_HEIGHT
         cropped = resized[crop_y_cutoff:crop_y_cutoff + CROPPED_HEIGHT, :]
 
         return cropped
@@ -322,7 +324,7 @@ class NeuralAgent(Agent):
         cur_img = self._resize_observation(observation.intArray)
 
 
-#        print 'Average pixel value: '+str(np.average(cur_img))
+        print 'Average pixel value: '+str(np.average(cur_img))
  #       print 'Max value: '+str(np.max(cur_img))
 
         #TESTING---------------------------
