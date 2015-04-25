@@ -38,7 +38,10 @@ import time
 
 import random
 import numpy as np
-import cv2
+import settings
+
+if settings.cuda == True:
+    import cv2
 
 import argparse
 
@@ -278,7 +281,12 @@ class NeuralAgent(Agent):
         image = np.array(image, dtype="uint8")
 
         # convert to greyscale
-        greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        
+        if settings.cuda == True: 
+	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+	else:
+	    greyscaled = np.average(image, axis=1)
+
 
         # resize keeping aspect ratio
         resize_width = CROPPED_WIDTH
