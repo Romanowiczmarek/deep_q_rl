@@ -9,6 +9,8 @@ import subprocess
 import sys
 import os
 import argparse
+import settings
+
 
 DEFAULT_BASE_ROM_PATH = "../roms/"
 DEFAULT_ROM = 'breakout.bin'
@@ -66,13 +68,17 @@ def main(args):
     p1 = subprocess.Popen(['rl_glue'], env=my_env, close_fds=close_fds)
 
     # Start ALE
-    command = ['ale', '-game_controller', 'rlglue', '-send_rgb', 'true',
+    command = [settings.ALE, '-game_controller', 'rlglue', '-send_rgb', 'true',
                '-restricted_action_set', 'true', '-frame_skip',
                str(parameters.frame_skip)]
     if not parameters.merge_frames:
         command.extend(['-disable_color_averaging', 'true'])
     if parameters.display_screen:
-        command.extend(['-display_screen', 'true'])
+        command.extend(['-display_screen', 'false'])
+        
+    print full_rom_path
+    full_rom_path='/home/ubuntu/installation_files/Arcade-Learning-Environment/roms/breakout.bin'
+
     command.append(full_rom_path)
     p2 = subprocess.Popen(command, env=my_env, close_fds=close_fds)
 

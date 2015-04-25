@@ -261,9 +261,10 @@ class CNNQLearner(object):
         Choose a random action with probability epsilon,
         or return the optimal action.
         """
-        if np.random.random() < epsilon:
+        if False and np.random.random() < epsilon:
             return np.random.randint(0, self.num_actions)
         else:
+            print self.q_vals(state)
             return np.argmax(self.q_vals(state))
 
     def train(self, states, actions, rewards, next_states,
@@ -276,7 +277,23 @@ class CNNQLearner(object):
         for epoch in xrange(epochs):
             losses = []
             for b in xrange(num_batches_valid):
+                print
+                print states.shape
+                print actions[0]
+                print 'Desired:'
+                print self.q_vals( next_states[0] )
+                print 'Before:'
+                A = self.q_vals(states[0])
+                print A
+
                 loss = self._train(b)
+                print 'After:'
+                B =  self.q_vals(states[0])
+                print B
+                print 'Difference:'
+                print A-B
+                print ''
+
                 losses.append(loss)
 
             mean_train_loss = np.sqrt(np.mean(losses))

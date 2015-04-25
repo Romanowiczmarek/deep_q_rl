@@ -240,6 +240,8 @@ class NeuralAgent(Agent):
            An action of type rlglue.types.Action
         """
 
+        print 'Agent start'
+
         self.step_counter = 0
         self.batch_counter = 0
 
@@ -310,6 +312,10 @@ class NeuralAgent(Agent):
         return_action = Action()
 
         cur_img = self._resize_observation(observation.intArray)
+
+
+        print 'Average pixel value: '+str(np.average(cur_img))
+        print 'Max value: '+str(np.max(cur_img))
 
         #TESTING---------------------------
         if self.testing:
