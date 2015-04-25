@@ -62,6 +62,7 @@ def main():
         if args.test_length > 0:
             RLGlue.RL_agent_message("start_testing")
             run_epoch(epoch, args.test_length, "testing")
+            RLGlue.RL_agent_message("parameterStats")
             RLGlue.RL_agent_message("finish_testing " + str(epoch))
 
 

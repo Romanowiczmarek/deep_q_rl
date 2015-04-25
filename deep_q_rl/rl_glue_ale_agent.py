@@ -441,6 +441,9 @@ class NeuralAgent(Agent):
             self.testing = True
             self.total_reward = 0
             self.episode_counter = 0
+	    
+	elif inm_message == "parameterStats":
+	    self.network.paramStats()
 
         elif in_message.startswith("finish_testing"):
             self.testing = False

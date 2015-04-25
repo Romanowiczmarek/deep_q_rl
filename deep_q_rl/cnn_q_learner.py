@@ -245,6 +245,13 @@ class CNNQLearner(object):
         self.q_layers[5].W.set_value(net.q_layers[5].W.get_value())
         self.q_layers[5].b.set_value(net.q_layers[5].b.get_value())
 
+    def paramStats(self):
+        print 'Max weight, 1st conv: '+str(numpy.max(numpy.asarray( net.q_layers[2].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[2].b.get_value() )))
+        print 'Max weight, 2nd conv: '+str(numpy.max(numpy.asarray( net.q_layers[3].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[3].b.get_value() )))
+        
+        print 'Max weight, 1st hidden: '+str(numpy.max(numpy.asarray( net.q_layers[4].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[4].b.get_value() )))
+        print 'Max weight, 2nd hidden: '+str(numpy.max(numpy.asarray( net.q_layers[5].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[5].b.get_value() )))
+      #  print 'Max weight, 1st regression: '+str(numpy.max(numpy.asarray( self.regression_weights() )))+', max bias: '+str(numpy.max(numpy.asarray( self.regression_biases() )))        
 
     def q_vals(self, state):
         """ Return an array of q-values for the indicated state (phi)
