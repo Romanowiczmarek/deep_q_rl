@@ -31,7 +31,7 @@ def run_epoch(epoch, num_steps, prefix):
     """
     steps_left = num_steps
     while steps_left > 0:
-        print prefix + " epoch: ", epoch, "steps_left: ", steps_left
+#        print prefix + " epoch: ", epoch, "steps_left: ", steps_left
         terminal = RLGlue.RL_episode(steps_left)
         if not terminal:
             RLGlue.RL_agent_message("episode_end")
@@ -54,15 +54,21 @@ def main():
     args = parser.parse_args()
 
     RLGlue.RL_init()
+    RLGlue.RL_agent_message("parameterStats")
 
     for epoch in range(1, args.num_epochs + 1):
+	print 'Epoch: '+str(epoch) 
         run_epoch(epoch, args.epoch_length, "training")
         RLGlue.RL_agent_message("finish_epoch " + str(epoch))
+
+	print 'parameterStats'
+	RLGlue.RL_agent_message("parameterStats")
+
         
         if args.test_length > 0:
             RLGlue.RL_agent_message("start_testing")
             run_epoch(epoch, args.test_length, "testing")
-            RLGlue.RL_agent_message("parameterStats")
+#            RLGlue.RL_agent_message("parameterStats")
             RLGlue.RL_agent_message("finish_testing " + str(epoch))
 
 

@@ -246,12 +246,17 @@ class CNNQLearner(object):
         self.q_layers[5].b.set_value(net.q_layers[5].b.get_value())
 
     def paramStats(self):
-        print 'Max weight, 1st conv: '+str(numpy.max(numpy.asarray( net.q_layers[2].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[2].b.get_value() )))
-        print 'Max weight, 2nd conv: '+str(numpy.max(numpy.asarray( net.q_layers[3].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[3].b.get_value() )))
+        print 'Max weight, 1st conv: '+str(np.max(np.asarray( self.q_layers[2].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[2].b.get_value() )))
+        print 'Max weight, 2nd conv: '+str(np.max(np.asarray( self.q_layers[3].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[3].b.get_value() )))
         
-        print 'Max weight, 1st hidden: '+str(numpy.max(numpy.asarray( net.q_layers[4].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[4].b.get_value() )))
-        print 'Max weight, 2nd hidden: '+str(numpy.max(numpy.asarray( net.q_layers[5].W.get_value() )))+', max bias: '+str(numpy.max(numpy.asarray( net.q_layers[5].b.get_value() )))
+        print 'Max weight, 1st hidden: '+str(np.max(np.asarray( self.q_layers[6].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[6].b.get_value() )))
+        print 'Max weight, 2nd hidden: '+str(np.max(np.asarray( self.q_layers[5].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[5].b.get_value() )))
+
+#	print 'Max weight, 2nd hidden: '+str(np.max(np.asarray( self.q_layers[7].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[7].b.get_value() )))
+
       #  print 'Max weight, 1st regression: '+str(numpy.max(numpy.asarray( self.regression_weights() )))+', max bias: '+str(numpy.max(numpy.asarray( self.regression_biases() )))        
+
+	print self.q_layers[7]
 
     def q_vals(self, state):
         """ Return an array of q-values for the indicated state (phi)
@@ -271,7 +276,7 @@ class CNNQLearner(object):
         if False and np.random.random() < epsilon:
             return np.random.randint(0, self.num_actions)
         else:
-            print self.q_vals(state)
+#            print self.q_vals(state)
             return np.argmax(self.q_vals(state))
 
     def train(self, states, actions, rewards, next_states,
@@ -284,22 +289,22 @@ class CNNQLearner(object):
         for epoch in xrange(epochs):
             losses = []
             for b in xrange(num_batches_valid):
-                print
-                print states.shape
-                print actions[0]
-                print 'Desired:'
-                print self.q_vals( next_states[0] )
-                print 'Before:'
-                A = self.q_vals(states[0])
-                print A
+#                print
+#                print states.shape
+#                print actions[0]
+#                print 'Desired:'
+#                print self.q_vals( next_states[0] )
+#                print 'Before:'
+#                A = self.q_vals(states[0])
+#                print A
 
                 loss = self._train(b)
-                print 'After:'
-                B =  self.q_vals(states[0])
-                print B
-                print 'Difference:'
-                print A-B
-                print ''
+#                print 'After:'
+#                B =  self.q_vals(states[0])
+#                print B
+#                print 'Difference:'
+#                print A-B
+#                print ''
 
                 losses.append(loss)
 

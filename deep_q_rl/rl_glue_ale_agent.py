@@ -322,8 +322,8 @@ class NeuralAgent(Agent):
         cur_img = self._resize_observation(observation.intArray)
 
 
-        print 'Average pixel value: '+str(np.average(cur_img))
-        print 'Max value: '+str(np.max(cur_img))
+#        print 'Average pixel value: '+str(np.average(cur_img))
+ #       print 'Max value: '+str(np.max(cur_img))
 
         #TESTING---------------------------
         if self.testing:
@@ -442,7 +442,8 @@ class NeuralAgent(Agent):
             self.total_reward = 0
             self.episode_counter = 0
 	    
-	elif inm_message == "parameterStats":
+	elif in_message == "parameterStats":
+	    print 'in parameterStats'
 	    self.network.paramStats()
 
         elif in_message.startswith("finish_testing"):
