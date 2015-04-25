@@ -266,6 +266,9 @@ class CNNQLearner(object):
                           self._img_height,
                           self._img_width), dtype=theano.config.floatX)
         state_batch[0, ...] = state
+	
+	print self.q_layers[6].output()
+	
         return self._compute_q_vals(state_batch)[0, :]
 
     def choose_action(self, state, epsilon):
