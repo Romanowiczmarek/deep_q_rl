@@ -69,6 +69,8 @@ class CNNQLearner(object):
         self.decay = decay
         self.momentum = momentum
         self.scale_input_by = 255.0
+	
+	self.counter = 0
 
         # CONSTRUCT THE LAYERS
         self.q_layers = []
@@ -280,6 +282,10 @@ class CNNQLearner(object):
         Choose a random action with probability epsilon,
         or return the optimal action.
         """
+	x = (self.counter % 256)*np.ones(state.shape)
+	print 'Input: '+str(self.counter % 256)
+	self.counter = self.counter+1	
+	
         if False and np.random.random() < epsilon:
             return np.random.randint(0, self.num_actions)
         else:
