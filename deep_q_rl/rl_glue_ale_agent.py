@@ -372,7 +372,7 @@ class NeuralAgent(Agent):
             int_action = self._choose_action(self.data_set, self.epsilon,
                                              cur_img, np.clip(reward, -1, 1))
 
-            if False and len(self.data_set) > self.batch_size:
+            if len(self.data_set) > self.batch_size:
                 loss = self._do_training()
                 self.batch_counter += 1
                 self.loss_averages.append(loss)
@@ -396,7 +396,7 @@ class NeuralAgent(Agent):
                             reward, False)
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
-	    img = phi
+#	    img = phi
 #	    C = img.reshape(4,84,84)
 #	    print C[0,20,:]
 #	    plt.imshow(C[0,:,:])

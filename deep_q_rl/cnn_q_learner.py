@@ -220,6 +220,7 @@ class CNNQLearner(object):
         self._train = theano.function([self._idx], self._loss,
                                       givens=self._givens,
                                       updates=self._updates)
+	
         self._compute_loss = theano.function([self._idx],
                                              self._loss,
                                              givens=self._givens)
