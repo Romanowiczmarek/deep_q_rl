@@ -25,7 +25,7 @@ Author: Nathan Sprague
 # limitations under the License.
 #
 
-
+import scipy as sp
 import copy
 import os
 import cPickle
@@ -285,24 +285,36 @@ class NeuralAgent(Agent):
         # convert from int32s
         image = np.array(image, dtype="uint8")
 
+	print np.max(np.max(image))
+
         # convert to greyscale
         
         if False and settings.cuda == True: 
+	    print 'cuda'
 	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	else:
-	    greyscaled = np.average(image, axis=1)
-
+	    print 'average'
+	    greyscaled = np.average(image, axis=2)
+#	print 'before cropping'
+#	print greyscaled[28,:]
 
         # resize keeping aspect ratio
         resize_width = CROPPED_WIDTH
         resize_height = int(round(float(IMAGE_HEIGHT) * CROPPED_HEIGHT / 
                                   IMAGE_WIDTH))
 	image = greyscaled
-	print 'Average pixel value: '+str(np.average(image))
-	print 'Max pixel value: '+str(np.max(image))
+#	print 'Average pixel value: '+str(np.average(image))
+#	print 'Max pixel value: '+str(np.max(image))
+
+
+#	print greyscaled.shape
 
         resized = cv2.resize(greyscaled, (resize_width, resize_height),
         interpolation=cv2.INTER_LINEAR)
+	
+	resize = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
+	
+#	print resized.shape
 
         # Crop the part we want
         crop_y_cutoff = resize_height - CROP_OFFSET - CROPPED_HEIGHT
@@ -310,8 +322,14 @@ class NeuralAgent(Agent):
 	print crop_y_cutoff+CROPPED_HEIGHT
         cropped = resized[crop_y_cutoff:crop_y_cutoff + CROPPED_HEIGHT, :]
 
+        print 'Average pixel value: '+str(np.average(cropped))
+        print 'Max pixel value: '+str(np.max(cropped))
+
+#	print 'cropped'
+#	print cropped[20,:]
+
 #	plt.imshow(cropped)
-#	plt.savefig('testDQN',cmap = cm.Greys_r, format = 'png')
+#	plt.savefig('testDQN', format = 'png')
 
         return cropped
 
@@ -379,7 +397,8 @@ class NeuralAgent(Agent):
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
 	    img = phi
-#	    C = img.reshape(4,84,84)
+	    C = img.reshape(4,84,84)
+	    print C[0,20,:]
 #	    plt.imshow(C[0,:,:])
 #	    plt.savefig('testIN1', format = 'png')	
 #	    plt.imshow(C[1,:,:])
@@ -471,7 +490,7 @@ class NeuralAgent(Agent):
 	elif in_message == "parameterStats":
 	    print 'in parameterStats'
 	    self.network.paramStats()
-#	    print 1/0
+	    print 1/0
         elif in_message.startswith("finish_testing"):
             self.testing = False
             holdout_size = 3200
