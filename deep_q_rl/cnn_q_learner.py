@@ -255,8 +255,8 @@ class CNNQLearner(object):
         print 'Max weight, 1st conv: '+str(np.max(np.asarray( self.q_layers[2].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[2].b.get_value() )))
         print 'Max weight, 2nd conv: '+str(np.max(np.asarray( self.q_layers[3].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[3].b.get_value() )))
         
-        print 'Max weight, 1st hidden: '+str(np.max(np.asarray( self.q_layers[6].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[6].b.get_value() )))
-        print 'Max weight, 2nd hidden: '+str(np.max(np.asarray( self.q_layers[5].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[5].b.get_value() )))
+        print 'Max weight, 1st hidden: '+str(np.max(np.asarray( self.q_layers[5].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[5].b.get_value() )))
+        print 'Max weight, 2nd hidden: '+str(np.max(np.asarray( self.q_layers[6].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[6].b.get_value() )))
 
 #	print 'Max weight, 2nd hidden: '+str(np.max(np.asarray( self.q_layers[7].W.get_value() )))+', max bias: '+str(np.max(np.asarray( self.q_layers[7].b.get_value() )))
 
