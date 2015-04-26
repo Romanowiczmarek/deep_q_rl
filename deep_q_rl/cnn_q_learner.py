@@ -225,7 +225,11 @@ class CNNQLearner(object):
             theano.function([self.q_layers[0].input_var],
                             self.q_layers[-1].predictions(),
                             on_unused_input='ignore')
-
+        
+	self._compute_activations = \
+            theano.function([self.q_layers[0].input_var],
+                            self.q_layers[2].output(),
+                            on_unused_input='ignore')
         #self.load_weights('network_file_3.pkl')
 
     def load_weights(self, file_name):
@@ -267,7 +271,7 @@ class CNNQLearner(object):
                           self._img_width), dtype=theano.config.floatX)
         state_batch[0, ...] = state
 	
-	print self.q_layers[6].output()
+#	print self._compute_activations(state_batch)[0]
 	
         return self._compute_q_vals(state_batch)[0, :]
 

@@ -379,15 +379,15 @@ class NeuralAgent(Agent):
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
 	    img = phi
-	    C = img.reshape(4,84,84)
-	    plt.imshow(C[0,:,:])
-	    plt.savefig('testIN1', format = 'png')	
-	    plt.imshow(C[1,:,:])
-	    plt.savefig('testIN2', format = 'png')	
-	    plt.imshow(C[2,:,:])
-	    plt.savefig('testIN3', format = 'png')	
-	    plt.imshow(C[3,:,:])
-	    plt.savefig('testIN4', format = 'png')	    
+#	    C = img.reshape(4,84,84)
+#	    plt.imshow(C[0,:,:])
+#	    plt.savefig('testIN1', format = 'png')	
+#	    plt.imshow(C[1,:,:])
+#	    plt.savefig('testIN2', format = 'png')	
+#	    plt.imshow(C[2,:,:])
+#	    plt.savefig('testIN3', format = 'png')	
+#	    plt.imshow(C[3,:,:])
+#	    plt.savefig('testIN4', format = 'png')	    
 
 
             int_action = self.network.choose_action(phi, epsilon)
