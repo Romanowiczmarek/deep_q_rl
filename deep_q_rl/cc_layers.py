@@ -92,6 +92,7 @@ class CudaConvnetConv2DLayer(object):
         self.filter_acts_op = FilterActs(stride=self.stride, partial_sum=self.partial_sum, pad=self.pad)
 
     def reset_params(self):
+        np.random.seed(1)
         self.W.set_value(np.random.randn(*self.filter_shape).astype(np.float32) * self.weights_std)
 
         if self.untie_biases:

@@ -451,6 +451,7 @@ class DenseLayer(object):
 
     def reset_params(self):
 	print 'Resetting parameters'
+	np.random.seed(1)
         self.W.set_value(np.random.randn(self.n_inputs, self.n_outputs).astype(np.float32) * self.weights_std)
         self.b.set_value(np.ones(self.n_outputs).astype(np.float32) * self.init_bias_value)
 
