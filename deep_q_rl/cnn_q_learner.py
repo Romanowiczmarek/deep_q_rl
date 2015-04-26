@@ -282,9 +282,10 @@ class CNNQLearner(object):
         Choose a random action with probability epsilon,
         or return the optimal action.
         """
-	x = (self.counter % 256)*np.ones(state.shape)
-	print 'Input: '+str(self.counter % 256)
-	self.counter = self.counter+1	
+#	state = state*0
+#	x = (self.counter % 256)*np.zeros(state.shape)
+#	print 'Input: '+str(self.counter % 256)
+#	self.counter = self.counter+1	
 	
         if False and np.random.random() < epsilon:
             return np.random.randint(0, self.num_actions)

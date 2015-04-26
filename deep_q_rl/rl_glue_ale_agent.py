@@ -285,7 +285,7 @@ class NeuralAgent(Agent):
         # convert from int32s
         image = np.array(image, dtype="uint8")
 
-	print np.max(np.max(image))
+#	print np.max(np.max(image))
 
         # convert to greyscale
         
@@ -293,7 +293,7 @@ class NeuralAgent(Agent):
 	    print 'cuda'
 	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	else:
-	    print 'average'
+#	    print 'average'
 	    greyscaled = np.average(image, axis=2)
 #	print 'before cropping'
 #	print greyscaled[28,:]
@@ -318,12 +318,12 @@ class NeuralAgent(Agent):
 
         # Crop the part we want
         crop_y_cutoff = resize_height - CROP_OFFSET - CROPPED_HEIGHT
-	print crop_y_cutoff
-	print crop_y_cutoff+CROPPED_HEIGHT
+#	print crop_y_cutoff
+#	print crop_y_cutoff+CROPPED_HEIGHT
         cropped = resized[crop_y_cutoff:crop_y_cutoff + CROPPED_HEIGHT, :]
 
-        print 'Average pixel value: '+str(np.average(cropped))
-        print 'Max pixel value: '+str(np.max(cropped))
+#        print 'Average pixel value: '+str(np.average(cropped))
+#        print 'Max pixel value: '+str(np.max(cropped))
 
 #	print 'cropped'
 #	print cropped[20,:]
@@ -372,7 +372,7 @@ class NeuralAgent(Agent):
             int_action = self._choose_action(self.data_set, self.epsilon,
                                              cur_img, np.clip(reward, -1, 1))
 
-            if len(self.data_set) > self.batch_size:
+            if False and len(self.data_set) > self.batch_size:
                 loss = self._do_training()
                 self.batch_counter += 1
                 self.loss_averages.append(loss)
@@ -397,8 +397,8 @@ class NeuralAgent(Agent):
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
 	    img = phi
-	    C = img.reshape(4,84,84)
-	    print C[0,20,:]
+#	    C = img.reshape(4,84,84)
+#	    print C[0,20,:]
 #	    plt.imshow(C[0,:,:])
 #	    plt.savefig('testIN1', format = 'png')	
 #	    plt.imshow(C[1,:,:])
@@ -490,7 +490,7 @@ class NeuralAgent(Agent):
 	elif in_message == "parameterStats":
 	    print 'in parameterStats'
 	    self.network.paramStats()
-	    print 1/0
+#	    print 1/0
         elif in_message.startswith("finish_testing"):
             self.testing = False
             holdout_size = 3200
