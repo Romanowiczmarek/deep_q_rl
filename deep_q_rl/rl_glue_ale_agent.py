@@ -208,7 +208,7 @@ class NeuralAgent(Agent):
                                          decay=self.rms_decay,
                                          momentum=self.momentum,
                                          batch_size=self.batch_size,
-                                         approximator='conv')
+                                         approximator='cuda_conv')
         
 
 
