@@ -307,10 +307,22 @@ class CNNQLearner(object):
 #	self.counter = self.counter+1	
 	
         if np.random.random() < epsilon:
-            return np.random.randint(0, self.num_actions)
+            return self.translateAction( np.random.randint(0, self.num_actions) )
         else:
           #  print self.q_vals(state)
-            return np.argmax(self.q_vals(state))
+            return self.translateAction( np.argmax(self.q_vals(state)) )
+    
+    def translateAction(self, a):
+	    if (a == 0):
+		    return 3
+	    if (a == 2):
+		    return 4
+	    if (a == 3):
+		    return 0
+	    if (a == 4):
+		    return 2
+
+	    return 1  
 
     def train(self, states, actions, rewards, next_states,
               terminals, epochs=1):
