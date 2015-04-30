@@ -149,6 +149,7 @@ class NeuralAgent(Agent):
             assert not TaskSpec.isSpecial(TaskSpec.getIntActions()[0][1]), \
                 " expecting max action to be a number not a special value"
             self.num_actions = TaskSpec.getIntActions()[0][1]+1
+	    self.num_actions = 3
         else:
             print "INVALID TASK SPEC"
 
@@ -259,7 +260,7 @@ class NeuralAgent(Agent):
         self.start_time = time.time()
         this_int_action = self.randGenerator.randint(0, self.num_actions-1)
         return_action = Action()
-        return_action.intArray = [this_int_action]
+        return_action.intArray = [self.translateaction(this_int_action)]
 
         self.last_action = copy.deepcopy(return_action)
 
@@ -376,13 +377,26 @@ class NeuralAgent(Agent):
                 self.batch_counter += 1
                 self.loss_averages.append(loss)
 
-        return_action.intArray = [int_action]
+        return_action.intArray = [ self.translateAction( int_action ) ]
 
         self.last_action = copy.deepcopy(return_action)
         self.last_img = cur_img
 
         return return_action
 
+    
+    def translateAction(self, a):
+	    if (a == 0):
+		    return 3
+	    if (a == 2):
+		    return 4
+	    if (a == 3):
+		    return 0
+	    if (a == 4):
+		    return 2
+
+	    return 1 
+	
     def _choose_action(self, data_set, epsilon, cur_img, reward):
         """
         Add the most recent data to the data set and choose
@@ -391,7 +405,7 @@ class NeuralAgent(Agent):
 	
 
         data_set.add_sample(self.last_img,
-                            self.last_action.intArray[0],
+                            self.translateAction( self.last_action.intArray[0] ),
                             reward, False)
         if self.step_counter >= self.phi_length:
             phi = data_set.phi(cur_img)
