@@ -262,7 +262,7 @@ class NeuralAgent(Agent):
         return_action = Action()
         return_action.intArray = [self.translateAction(this_int_action)]
 	
-	print 'Agent start: '+str(self.translateAction(this_int_action))
+	#print 'Agent start: '+str(self.translateAction(this_int_action))
 
         self.last_action = copy.deepcopy(return_action)
 
@@ -381,7 +381,7 @@ class NeuralAgent(Agent):
 
         return_action.intArray = [ self.translateAction( int_action ) ]
     
-	print 'saving last action: '+str(self.translateAction( int_action) )
+	#print 'saving last action: '+str(self.translateAction( int_action) )
 
         self.last_action = copy.deepcopy(return_action)
         self.last_img = cur_img
@@ -439,7 +439,7 @@ class NeuralAgent(Agent):
         """
         states, actions, rewards, next_states, terminals = \
                                 self.data_set.random_batch(self.batch_size)
-	print actions
+	#print actions
         return self.network.train(states, actions, rewards,
                                   next_states, terminals)
 
