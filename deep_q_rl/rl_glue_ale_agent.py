@@ -260,7 +260,7 @@ class NeuralAgent(Agent):
         self.start_time = time.time()
         this_int_action = self.randGenerator.randint(0, self.num_actions-1)
         return_action = Action()
-        return_action.intArray = [self.translateaction(this_int_action)]
+        return_action.intArray = [self.translateAction(this_int_action)]
 
         self.last_action = copy.deepcopy(return_action)
 
