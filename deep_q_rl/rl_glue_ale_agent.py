@@ -101,7 +101,7 @@ class NeuralAgent(Agent):
                             help='Number of steps to minimum epsilon.')
         parser.add_argument('--phi_length', type=int, default=4,
                             help='History length')
-        parser.add_argument('--max_history', type=int, default=100,
+        parser.add_argument('--max_history', type=int, default=1000000,
                             help='Maximum number of steps stored')
         parser.add_argument('--batch_size', type=int, default=32,
                             help='Batch size')
@@ -208,7 +208,7 @@ class NeuralAgent(Agent):
                                          decay=self.rms_decay,
                                          momentum=self.momentum,
                                          batch_size=self.batch_size,
-                                         approximator='cuda_conv')
+                                         approximator='conv')
         
 
 
@@ -352,9 +352,8 @@ class NeuralAgent(Agent):
 
         cur_img = self._resize_observation(observation.intArray)
 
-
-        print 'Average pixel value: '+str(np.average(cur_img))
-        print 'Max value: '+str(np.max(cur_img))
+#        print 'Average pixel value: '+str(np.average(cur_img))
+#        print 'Max value: '+str(np.max(cur_img))
 
         #TESTING---------------------------
         if self.testing:
