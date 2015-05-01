@@ -27,9 +27,10 @@ W = net.q_layers[first].W.get_value()
 b = net.q_layers[first].b.get_value()
 numpy.savez(fileConvolutional1, W, b ) 
 print W.shape
+print b.shape
 
 W = net.q_layers[first+1].W.get_value()
-b = net.q_layers[firts+1].b.get_value()
+b = net.q_layers[first+1].b.get_value()
 numpy.savez(fileConvolutional2, W, b )
 
 print W.shape
@@ -43,7 +44,12 @@ W = net.q_layers[first].W.get_value()
 b = net.q_layers[first].b.get_value()
 numpy.savez(fileHiddenParams, W, b )
 
+
+
 W = net.q_layers[first+1].W.get_value()
 b = net.q_layers[first+1].b.get_value()
+
+print W.shape
+print b.shape
 numpy.savez(fileLogisticParams, W, b )
 
