@@ -312,10 +312,10 @@ class NeuralAgent(Agent):
 
 #	print greyscaled.shape
 
-        resized = cv2.resize(greyscaled, (resize_width, resize_height),
+        #resized = cv2.resize(greyscaled, (resize_width, resize_height),
         interpolation=cv2.INTER_LINEAR)
 	
-	resize = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
+	resized = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
 	
 #	print resized.shape
 
