@@ -297,7 +297,9 @@ class NeuralAgent(Agent):
 	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	else:
 #	    print 'average'
-	    greyscaled = np.average(image, axis=2)
+	    greyscaled = 0.299*image[:,:,0] + 0.587*image[:,:,1]+0.114*image[:,:,2]  
+	    #greyscaled = np.average(image, axis=2)
+
 #	print 'before cropping'
 #	print greyscaled[28,:]
 
@@ -313,7 +315,7 @@ class NeuralAgent(Agent):
 #	print greyscaled.shape
 
         #resized = cv2.resize(greyscaled, (resize_width, resize_height),
-        interpolation=cv2.INTER_LINEAR)
+        #interpolation=cv2.INTER_LINEAR)
 	
 	resized = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
 	
