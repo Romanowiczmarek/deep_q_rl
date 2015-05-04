@@ -292,6 +292,9 @@ class CNNQLearner(object):
                           self._img_width), dtype=theano.config.floatX)
         state_batch[0, ...] = state
 	
+
+	state_batch[0, ...] = np.ones(( 1, 84*84*4 ))
+	
 #	print self._compute_activations(state_batch)[0]
 	
         return self._compute_q_vals(state_batch)[0, :]
