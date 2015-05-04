@@ -294,6 +294,8 @@ class CNNQLearner(object):
 	
 
 	state_batch[0, ...] = np.ones(( 1, 84*84*4 ))
+	print 'Response to ones:'
+	print self._compute_q_vals(state_batch)[0, :]
 	
 #	print self._compute_activations(state_batch)[0]
 	
