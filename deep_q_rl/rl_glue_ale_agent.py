@@ -391,6 +391,11 @@ class NeuralAgent(Agent):
 
     
     def translateAction(self, a):
+            
+            if settings.using_other_data == True:
+		return a
+	
+
 	    if (a == 0):
 		    return 3
 	    if (a == 2):
