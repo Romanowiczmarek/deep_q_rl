@@ -18,7 +18,7 @@ fileConvolutional2 = directoryParamSaving+'/conv2.npz'
 net_file = open(file_name, 'r')
 net = cPickle.load(net_file)
 
-if net.approximator == 'conv':
+if False and net.approximator == 'conv':
 	first = 1
 else:
 	first = 2
@@ -34,8 +34,9 @@ b = net.q_layers[first+1].b.get_value()
 numpy.savez(fileConvolutional2, W, b )
 
 print W.shape
+print b.shape
 
-if net.approximator == 'conv':
+if False and net.approximator == 'conv':
 	first = 3
 else:
 	first = 5

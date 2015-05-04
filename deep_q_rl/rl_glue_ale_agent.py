@@ -292,8 +292,8 @@ class NeuralAgent(Agent):
 
         # convert to greyscale
         
-        if False and settings.cuda == True: 
-	    print 'cuda'
+        if settings.cuda == True: 
+#	    print 'cuda'
 	    greyscaled = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	else:
 #	    print 'average'
@@ -314,9 +314,9 @@ class NeuralAgent(Agent):
 
 #	print greyscaled.shape
 
-        #resized = cv2.resize(greyscaled, (resize_width, resize_height), interpolation=cv2.INTER_LINEAR)
+        resized = cv2.resize(greyscaled, (resize_width, resize_height), interpolation=cv2.INTER_LINEAR)
 	
-	resized = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
+	#resized = sp.misc.imresize(greyscaled, (110, 84 ), interp = 'bilinear', mode = 'F')
 	
 #	print resized.shape
 
